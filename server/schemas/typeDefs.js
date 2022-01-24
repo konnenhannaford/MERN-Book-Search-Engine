@@ -6,16 +6,13 @@ const typeDefs = gql`
     username: String!
     email: String!
     bookcount: INT!
-    // savedBooks: ....
   }
 
   type Book {
     _id: ID!
-    // bookID: .
     authors: [String]
     description: String!
     title: String!
-    // image.....
     link: String!
   }
 
@@ -24,9 +21,6 @@ const typeDefs = gql`
     user: User
   }
 
-  type Mutation {
-    createMatchup(tech1: String!, tech2: String!): Matchup
-    createVote(_id: String!, techNum: Int!): Matchup
   }
 `;
 
