@@ -3,16 +3,16 @@ const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
-  Query: {
+                              Query: {
 
-  me: async (parent, args, context) => {
-    // what i see elsewhere is like this - parent, args, context, info
+                              me: async (parent, args, context) => {
+                                // what i see elsewhere is like this - parent, args, context, info
 
-    if (context.user) {
-      const userData = await User.findOne({ _id: context.user._id });
-      return userData;
-    }
-  },
+                                if (context.user) {
+                                  const userData = await User.findOne({ _id: context.user._id });
+                                  return userData;
+                                }
+                              },
 // whats this doing?
       // return User.findOne({ _id: context.user._id });
 //     }
@@ -64,7 +64,7 @@ const resolvers = {
     saveBook: async (parent, { bookData }, context) => {
       //         saveBook: async (parent, args, context) => {
       if (context.user) {
-          const updatedUser = await User.findByIdAndUpdate(
+          const user = await User.findByIdAndUpdate(
             // return User.findOneAndUpdate(
 
               { _id: context.user._id },
@@ -81,7 +81,7 @@ const resolvers = {
 
           );
 
-          return updatedUser;
+          return user;
       }
 
       throw new AuthenticationError('There was a request error...');
@@ -92,8 +92,7 @@ const resolvers = {
           if (context.user) {
           return User.findOneAndUpdate(
               { _id: context.user._id},
-              {$pull: { savedBooks: {bookId}}},
-              //             { $pull: { savedBooks: { bookId: bookId } } },
+              {$pull: { savedBooks: {bookId: bookId} }},
               { new: true})
               .then (result => {
                   return{...result}
