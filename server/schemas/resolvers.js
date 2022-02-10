@@ -1,4 +1,6 @@
 const { User } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -68,8 +70,8 @@ const resolvers = {
               { _id: context.user._id },
               { $push: { savedBooks: bookData } },
               //               {$push: { savedBooks: args}},
-              { new: true, runValidators: true }
-                // { new: true})
+              // { new: true, runValidators: true }
+                { new: true}
               //   .then (result => {
               //     return{...result}
               // })
