@@ -1,40 +1,23 @@
-const { User } = require('../models');
+const { User } = require('../models/User');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
-                              Query: {
 
-                              me: async (parent, args, context) => {
-                                // what i see elsewhere is like this - parent, args, context, info
-
-                                if (context.user) {
-                                  const userData = await User.findOne({ _id: context.user._id });
-                                  return userData;
-                                }
-                              },
-// whats this doing?
-      // return User.findOne({ _id: context.user._id });
-//     }
-//     throw new AuthenticationError('You need to be logged in!');
-// },
-
-// this part?
-//   users: async () => {
-//     return await User.find().select('-__v -password').populate('savedBooks');
-// },
-
-// user: async (parent, { username }) => {
-//     return await User.findOne({ username }).select('-__v -password').populate('savedBooks');
-// }
-// },
-
-
-// login(username: String!, password: String!): Auth
-// addUser(username: String!, password: String!, email:String!): Auth
-// saveBook(authors: String, description: String, title: String!, bookId: String, image: String, link: String): User
-// removeBook(bookId: String!): User
-
+  Query: { 
+    // attempt 2 with different style
+    me: async (parent, args, context) => {
+    try {
+        if (context.user) {
+          return User.findOne({ _id: context.user._id })
+        }
+        throw new AuthenticationError('You need to be logged in!');
+    }
+    catch (err) {
+        console.log(err);
+    }
+},
+},
 
   Mutation: {
     login: async (parent, {email, password}) => {
@@ -105,7 +88,7 @@ const resolvers = {
 
   } 
 }
-}
+// }
 };
 
 module.exports = resolvers;

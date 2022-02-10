@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
 // require('dot-env');
-require('dotenv').config();
+                                require('dotenv').config();
 
 // why is this not being called?
 const { authMiddleware } = require('./utils/auth');
@@ -24,7 +24,8 @@ const server = new ApolloServer({
 // await server.start();
 server.applyMiddleware({ app });
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+// change true or false
 app.use(express.json());
 
                         // if we're in production, serve client/build as static assets
