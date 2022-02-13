@@ -1,6 +1,7 @@
 const { User } = require('../models/User');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const { argsToArgsConfig } = require('graphql/type/definition');
 
 const resolvers = {
 
@@ -39,9 +40,12 @@ const resolvers = {
     
     addUser: async (parent, args) => {
       // instead of args? - {username, email, password}
-      const user = await User.create(args);
+      console.log(args)
+      const user = await new User({...args})
+      user.save();
+      console.log(user)
       const token = signToken(user);
-      return { token, user };
+      return { token, user };d
     },
 
     saveBook: async (parent, { bookData }, context) => {

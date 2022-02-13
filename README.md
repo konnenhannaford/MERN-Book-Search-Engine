@@ -1,3 +1,9 @@
+
+lsof -i tcp:3000
+kill -9 PID
+
+sudo pkill node 
+
 # MERN-Book-Search-Engine
 
 # 21 MERN: Book Search Engine
@@ -85,6 +91,8 @@ A user can view their saved books on a separate page, as shown in the following 
 In order for this application to use a GraphQL API, you’ll need to refactor the API to use GraphQL on the back end and add some functionality to the front end. The following sections contain details about the files you’ll need to modify on the back end and the front end.
 
 **Important**: Make sure to study the application before building upon it. Better yet, start by making a copy of it. It's already a working application&mdash;you're converting it from RESTful API practices to a GraphQL API.
+
+
 
 ### Back-End Specifications
 
@@ -187,7 +195,7 @@ Additionally, you’ll need to complete the following tasks in each of these fro
 
 	* Use the `useMutation()` Hook to execute the `REMOVE_BOOK` mutation in the `handleDeleteBook()` function instead of the `deleteBook()` function that's imported from `API` file. (Make sure you keep the `removeBookId()` function in place!)
 
-* `SignupForm.js`: Replace the `addUser()` functionality imported from the `API` file with the `ADD_USER` mutation functionality.
+* `corm.js`: Replace the `addUser()` functionality imported from the `API` file with the `ADD_USER` mutation functionality.
 
 * `LoginForm.js`: Replace the `loginUser()` functionality imported from the `API` file with the `LOGIN_USER` mutation functionality.
 
