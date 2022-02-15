@@ -216,13 +216,13 @@ const SearchBooks = () => {
     }
   };
 
-  const [saveBook] = useMutation(SAVE_BOOK);
+  const [saveBook,{data, loading, error}] = useMutation(SAVE_BOOK);
 
   const handleSaveBook = async (bookId) => {
 
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-
+     console.log(bookToSave)
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -232,10 +232,9 @@ const SearchBooks = () => {
 
     try {
       console.log('bookToSave:', bookToSave);
-
-      const { data } = await saveBook({
-        variables: { bookData: { ...bookToSave } }
-      });
+    const userId = JSON.parse(localStorage.getItem("id_token")).user;
+     console.log(userId)
+    await saveBook({variables: { bookData:{...bookToSave ,userId:userId._id} }});
       console.log('data:', data);
 
       // if book successfully saves to user's account, save book id to state
@@ -280,6 +279,7 @@ const SearchBooks = () => {
         </h2>
         <CardColumns>
           {searchedBooks.map((book) => {
+            console.log(book.image)
             return (
               <Card key={book.bookId} border='dark'>
                 {book.image ? (

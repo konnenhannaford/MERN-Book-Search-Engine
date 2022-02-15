@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const bookSchema = new Schema({
   authors: [
@@ -8,7 +8,6 @@ const bookSchema = new Schema({
   ],
   description: {
     type: String,
-    required: true,
   },
   bookId: {
     type: String,
@@ -17,13 +16,15 @@ const bookSchema = new Schema({
   image: {
     type: String,
   },
-  link: {
-    type: String,
-  },
   title: {
     type: String,
     required: true,
   },
+  userId:{
+    type:String,
+    required:true,
+  }
 });
+const Books = model('Books', bookSchema);
 
-module.exports = bookSchema;
+module.exports = Books;

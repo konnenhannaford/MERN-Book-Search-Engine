@@ -112,45 +112,74 @@
 
 // export default SavedBooks;
 
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
-import { useQuery, useMutation } from "@apollo/client";
-import { REMOVE_BOOK } from '../utils/mutations';
+import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
+import { REMOVE_BOOK } from '../utils/queries';
 import * as queries from '../utils/queries';
 import Auth from '../utils/auth';
-import { removeBookId } from '../utils/localStorage';
+import { removeBookId, saveBookIds } from '../utils/localStorage';
 
 const SavedBooks = () => {
 
-  const { loading, data } = useQuery(queries.QUERY_ME);
-  const userData = data?.me || [];
-  const [removeBook] = useMutation(REMOVE_BOOK);
-
+  const userInfo = JSON.parse(localStorage.getItem("id_token")).user;
+  //Sconst [userData, setUserData] = useState();
+  console.log(userInfo);
+  const {refetch, loading, data } = useQuery(queries.QUERY_ME,{
+    variables:{userId:userInfo._id}
+  });
+  //console.log(userData);
+  const [allBooks, setAllBooks] = useState()
+console.log(allBooks)
+  const [removeBook,{data:removedBook}] = useLazyQuery(REMOVE_BOOK);
+  console.log(removedBook);
   const handleDeleteBook = async (bookId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+   // const token = Auth.loggedIn() ? Auth.getToken() : null;
     console.log(bookId);
-    if (!token) {
-      return false;
-    }
+    // if (!token) {
+    //   return false;
+    // }
 
     try {
       // Apollo will cache the response and automatically refetch and update
       await removeBook({
         variables: { bookId: bookId }
       });
-
+     
       // upon success, remove book's id from localStorage
-      removeBookId(bookId);
+     // removeBookId(bookId);
     } catch (err) {
       console.error(err);
     }
   };
-
+  useEffect(()=>{
+   if(data){
+    var userData = data?.me.savedBooks || [];
+     setAllBooks(userData)
+     const ids = userData.map((book)=> book.bookId);
+     console.log(ids);
+     saveBookIds(ids);
+   }
+  },[data])
+  useEffect(()=>{
+    if(removedBook){
+      //const books = userData;
+     // console.log(books);
+         let data = allBooks.filter((book)=>book.bookId !== removedBook["removeBook"].bookId);
+         console.log(data);
+         setAllBooks(data);
+         const ids = data.map((book)=> book.bookId);
+         console.log(ids);
+         saveBookIds(ids);
+    }
+  },[removedBook])
+  useEffect(() => {
+    refetch();
+  }, [])
   // if data isn't here yet, say so
   if (loading) {
     return <h2>LOADING...</h2>;
   }
-
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -160,12 +189,12 @@ const SavedBooks = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedBooks?.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
+          {allBooks?.length
+            ? `Viewing ${allBooks?.length} saved ${allBooks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'}
         </h2>
         <CardColumns>
-          {userData.savedBooks?.map((book) => {
+          {allBooks?.map((book) => {
             return (
               <Card key={book.bookId} border='dark'>
                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}

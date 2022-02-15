@@ -1,4 +1,5 @@
-const { User } = require('../models/User');
+const  User  = require('../models/User');
+const Books = require('../models/Book');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 const { argsToArgsConfig } = require('graphql/type/definition');
@@ -8,16 +9,20 @@ const resolvers = {
   Query: { 
     // attempt 2 with different style
     me: async (parent, args, context) => {
-    try {
-        if (context.user) {
-          return User.findOne({ _id: context.user._id })
-        }
-        throw new AuthenticationError('You need to be logged in!');
-    }
-    catch (err) {
-        console.log(err);
-    }
-},
+       const userData = await User.findById({_id:args.id})
+       const booksSaved = await Books.find({userId:args.id})
+      // console.log(userData);
+      // console.log(booksSaved);
+    
+       return {user:userData,savedBooks:booksSaved }
+   },
+    removeBook: async (parent, {bookId}, context) => {
+      console.log(bookId);  
+         const book = await Books.findOneAndDelete({bookId:bookId});
+         console.log(book.bookId); 
+            
+            return {bookId:book.bookId};
+        }, 
 },
 
   Mutation: {
@@ -41,56 +46,22 @@ const resolvers = {
     addUser: async (parent, args) => {
       // instead of args? - {username, email, password}
       console.log(args)
-      const user = await new User({...args})
+      const user = new User({...args})
       user.save();
       console.log(user)
       const token = signToken(user);
-      return { token, user };d
+      return { token, user };
     },
 
-    saveBook: async (parent, { bookData }, context) => {
+    saveBook: async (parent, {book}, context) => {
       //         saveBook: async (parent, args, context) => {
-      if (context.user) {
-          const user = await User.findByIdAndUpdate(
-            // return User.findOneAndUpdate(
-
-              { _id: context.user._id },
-              { $push: { savedBooks: bookData } },
-              //               {$push: { savedBooks: args}},
-              // { new: true, runValidators: true }
-                { new: true}
-              //   .then (result => {
-              //     return{...result}
-              // })
-              // .catch (err => {
-              //     console.error(err)
-              // })
-
-          );
-
-          return user;
-      }
-
-      throw new AuthenticationError('There was a request error...');
-  },
+     console.log("Coming Data",book)
+      const addedBook = new Books(book);
+      console.log(addedBook);
+      addedBook.save();
+      return {addedBook}
+     },
     
-  
-        removeBook: async (parent, {bookId}, context) => {
-          if (context.user) {
-          return User.findOneAndUpdate(
-              { _id: context.user._id},
-              {$pull: { savedBooks: {bookId: bookId} }},
-              { new: true})
-              .then (result => {
-                  return{...result}
-              })
-              .catch (err => {
-                  console.error(err)
-              })
-      }
-      throw new AuthenticationError('Please login to delete a book!');
-
-  } 
 }
 // }
 };
