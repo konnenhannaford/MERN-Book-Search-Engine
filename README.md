@@ -1,19 +1,19 @@
 
-# Tech Blog
+# MERN BOOK SEARCH
 
 
 
-[![Github Commits](https://img.shields.io/github/commit-activity/w/konnenhannaford/Tech-Blog)](https://github.com/konnenhannaford/Tech-Blog/commits)
-[![GitHub latest commit](https://img.shields.io/github/last-commit/konnenhannaford/Tech-Blog)](https://github.com/konnenhannaford/Tech-Blog/branches)
+[![Github Commits](https://img.shields.io/github/commit-activity/w/konnenhannaford/MERN-Book-Search-Engine)](https://github.com/konnenhannaford/MERN-Book-Search-Engine/commits)
+[![GitHub latest commit](https://img.shields.io/github/last-commit/konnenhannaford/MERN-Book-Search-Engine)](https://github.com/konnenhannaford/MERN-Book-Search-Engine/branches)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
 [![GitHub followers](https://img.shields.io/github/followers/konnenhannaford.svg)]()
-![GitHub repo size](https://img.shields.io/github/repo-size/konnenhannaford/Tech-Blog)
-[![GitHub issues](https://img.shields.io/github/issues/konnenhannaford/Tech-Blog)](https://img.shields.io/github/issues/konnenhannaford/Tech-Blog)
+![GitHub repo size](https://img.shields.io/github/repo-size/konnenhannaford/MERN-Book-Search-Engine)
+[![GitHub issues](https://img.shields.io/github/issues/konnenhannaford/MERN-Book-Search-Engine)](https://img.shields.io/github/issues/konnenhannaford/MERN-Book-Search-Engine)
 
-![GitHub language count](https://img.shields.io/github/languages/count/konnenhannaford/Tech-Blog)
+![GitHub language count](https://img.shields.io/github/languages/count/konnenhannaford/MERN-Book-Search-Engine)
 
 Github Repo
-https://github.com/konnenhannaford/Tech-Blog
+https://github.com/konnenhannaford/MERN-Book-Search-Engine
 
 Heroku Page
 https://techblogmern.herokuapp.com/
@@ -68,7 +68,7 @@ https://techblogmern.herokuapp.com/
   
 ---
 ### 3. Installation 
-You can download the source code from [my Github repository](https://github.com/konnenhannaford/Tech-Blog) and unzip the files to a location on your computer. 
+You can download the source code from [my Github repository](https://github.com/konnenhannaford/MERN-Book-Search-Engine) and unzip the files to a location on your computer. 
 
 ---
 
@@ -86,7 +86,7 @@ You can download the source code from [my Github repository](https://github.com/
 ### 5. License  
  The works in this repository are subject to:  
 
-[![GitHub](https://img.shields.io/github/license/konnenhannaford/Tech-Blog)](doc/LICENSE.md)
+[![GitHub](https://img.shields.io/github/license/konnenhannaford/MERN-Book-Search-Engine)](doc/LICENSE.md)
 
 ---
 ### 6. Contributers  
