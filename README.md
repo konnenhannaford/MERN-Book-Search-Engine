@@ -1,4 +1,4 @@
-![Konnen Hannaford](./client/src/components/ss2.png)
+
 # Tech Blog
 
 
@@ -16,7 +16,7 @@ Github Repo
 https://github.com/konnenhannaford/Tech-Blog
 
 Heroku Page
-https://sampledbattle.herokuapp.com/
+https://techblogmern.herokuapp.com/
 
 ### Table of Contents  
   
@@ -33,18 +33,18 @@ https://sampledbattle.herokuapp.com/
 ### 1. Description  
 
 **What is this project?**  
-* An application for users to upload and discover other users remixed music  
+* An application for users to search and save books sing GOOGLE BOOK SEARCH API
 
 **Why this project?**  
-* Music production has become alot more common in recent years with more DAW's becoming available and more users gaining access to these tools.  As one of these bedroom producers, I wanted to create an app that allowed for users to post remixes that they make and view those psoted by others.  With the implementation of voiting and compeititons, this type of service could grow for spreading music and growing artist relationships.  
+* Online research is common practice for a range of products.  Books are no different.  Users want to be abe to read about a book before they purchase it.   This site will allow users to be able to search for books and read a blurb about them to see if they want to save them to a list.  This could be used for a  range of things and a useful way of learning about saving to daatabases in a mern project
 
 #### Screengrab
 
-![Screengrab](./sssite.png) 
+![Screengrab](../MERN-Book-Search-Engine/Assets/21-mern-homework-demo-01.gif) 
 
 
 **What problem does this project solve?**  
-* Users who want the ability of sharing their remixes and competing against others
+* Users who want the ability of searching books and saving them to a list for review later
 
 
 **Lessons learnt?**  
@@ -63,14 +63,12 @@ https://sampledbattle.herokuapp.com/
 - NPM
 - REACT
 - GRAPHQL
-- HOWLER
-- CHAKRA
-- REACT-ICONS
+
 
   
 ---
 ### 3. Installation 
-You can download the source code from [my Github repository](https://github.com/konnenhannaford/battle) and unzip the files to a location on your computer. 
+You can download the source code from [my Github repository](https://github.com/konnenhannaford/Tech-Blog) and unzip the files to a location on your computer. 
 
 ---
 
@@ -78,10 +76,9 @@ You can download the source code from [my Github repository](https://github.com/
 - Running npm i after downloading will bring in any required dpendencies
 - Npm start will start the sevrer an client side and will load the app on a local host
 - Users can use the site as normal by accessign the Heroku link
-- Users will sign up as a new artist filling in info about them
-- This gets added to the artists page and can be updated in the update profile page
-- Users can upload songs from update profile screena nd this gets added to the home page
-- The user if logged in can dlete this song from the home page
+- Users will sign up as a new user filling in info about them
+- This redirecs users to the search page where they can search a book
+- Users can view books and save them to their database which can then be removed when they navigate to the savedbooks tab and hit dleete book
 
 
 
@@ -89,7 +86,7 @@ You can download the source code from [my Github repository](https://github.com/
 ### 5. License  
  The works in this repository are subject to:  
 
-[![GitHub](https://img.shields.io/github/license/Mark33Mark/movie-scheduler)](doc/LICENSE.md)
+[![GitHub](https://img.shields.io/github/license/konnenhannaford/Tech-Blog)](doc/LICENSE.md)
 
 ---
 ### 6. Contributers  

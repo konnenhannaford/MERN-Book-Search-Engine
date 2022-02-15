@@ -35,9 +35,8 @@ const dbConnection = (URI) => {
   // wont Work
         // mongoose.connect( 'mongodb://localhost/sampledbattles', {
   // this works
-  // mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://konnen23:endalkachew23@cluster0.iaodg.mongodb.net/mernbooks?retryWrites=true&w=majority', {
+  mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://konnen23:endalkachew23@cluster0.iaodg.mongodb.net/mernbooks?retryWrites=true&w=majority', {
 
-  mongoose.connect('mongodb://user:user123@cluster0-shard-00-00.arwzj.mongodb.net:27017,cluster0-shard-00-01.arwzj.mongodb.net:27017,cluster0-shard-00-02.arwzj.mongodb.net:27017/bookdb?ssl=true&replicaSet=atlas-f3wnz1-shard-0&authSource=admin&retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
